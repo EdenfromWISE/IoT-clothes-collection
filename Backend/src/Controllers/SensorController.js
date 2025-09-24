@@ -1,7 +1,7 @@
-import Sensor from ('../Models/Sensors.js');
-import Device from ('../Models/Devices.js');
+import Sensor from '../Models/Sensors.js';
+import Device from '../Models/Devices.js';
 
-class SensorsController {
+class SensorController {
   // Nhận dữ liệu từ ESP32
   async receiveSensorData(req, res) {
     try {
@@ -220,6 +220,104 @@ class SensorsController {
       });
     }
   }
+
+  // Lấy dữ liệu cho chart (THÊM METHOD NÀY)
+  async getSensorChart(req, res) {
+    try {
+      const { deviceId } = req.params;
+      const { 
+        type = 'temperature', 
+        period = '24h', // 1h, 6h, 24h, 7d, 30d
+        groupBy = 'hour' // minute, hour, day
+      } = req.query;
+      const userId = req.user.userId;
+
+      // Kiểm tra quyền sở hữu device
+      const device = await Device.findOne({ _id: deviceId, owner: userId });
+      if (!device) {
+        return res.status(404).json({
+          success: false,
+          message: 'Không tìm thấy thiết bị'
+        });
+      }
+
+      // Tính startDate dựa trên period
+      const now = new Date();
+      let startDate;
+      
+      switch (period) {
+        case '1h': startDate = new Date(now - 1 * 60 * 60 * 1000); break;
+        case '6h': startDate = new Date(now - 6 * 60 * 60 * 1000); break;
+        case '24h': startDate = new Date(now - 24 * 60 * 60 * 1000); break;
+        case '7d': startDate = new Date(now - 7 * 24 * 60 * 60 * 1000); break;
+        case '30d': startDate = new Date(now - 30 * 24 * 60 * 60 * 1000); break;
+        default: startDate = new Date(now - 24 * 60 * 60 * 1000);
+      }
+
+      // Tạo group format dựa trên groupBy
+      let dateFormat;
+      switch (groupBy) {
+        case 'minute': 
+          dateFormat = { $dateToString: { format: "%Y-%m-%d %H:%M", date: "$createdAt" } };
+          break;
+        case 'hour': 
+          dateFormat = { $dateToString: { format: "%Y-%m-%d %H:00", date: "$createdAt" } };
+          break;
+        case 'day': 
+          dateFormat = { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } };
+          break;
+        default: 
+          dateFormat = { $dateToString: { format: "%Y-%m-%d %H:00", date: "$createdAt" } };
+      }
+
+      const chartData = await Sensor.aggregate([
+        {
+          $match: {
+            deviceId: device._id,
+            type,
+            createdAt: { $gte: startDate, $lte: now }
+          }
+        },
+        {
+          $group: {
+            _id: dateFormat,
+            avgValue: { $avg: '$value' },
+            minValue: { $min: '$value' },
+            maxValue: { $max: '$value' },
+            count: { $sum: 1 }
+          }
+        },
+        { $sort: { _id: 1 } }
+      ]);
+
+      res.status(200).json({
+        success: true,
+        data: {
+          device: {
+            id: device._id,
+            name: device.name,
+            serial: device.serial
+          },
+          chartData,
+          meta: {
+            type,
+            period,
+            groupBy,
+            startDate,
+            endDate: now
+          }
+        }
+      });
+
+    } catch (error) {
+      console.error('Get sensor chart error:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Lỗi server khi lấy dữ liệu chart',
+        error: error.message
+      });
+    }
+  }
 }
 
-export default new SensorsController();
+export default new SensorController();
