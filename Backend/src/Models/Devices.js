@@ -17,4 +17,4 @@ const DeviceSchema = new Schema({
 DeviceSchema.index({ owner: 1 });
 DeviceSchema.index({ serial: 1 });
 
-module.exports = mongoose.model('Device', DeviceSchema);
+export default mongoose.model('Device', DeviceSchema);

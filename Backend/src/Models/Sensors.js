@@ -14,4 +14,4 @@ const SensorSchema = new Schema({
 // uncomment và set index TTL (chú ý tạo index sau khi model tạo)
 // SensorSchema.index({ createdAt: 1 }, { expireAfterSeconds: 90 * 24 * 3600 });
 
-module.exports = mongoose.model('Sensor', SensorSchema);
+export default mongoose.model('Sensor', SensorSchema);

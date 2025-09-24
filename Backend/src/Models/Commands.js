@@ -14,4 +14,4 @@ const CommandSchema = new Schema({
 
 // khi device trả kết quả, update status và updatedAt
 
-module.exports = mongoose.model('Command', CommandSchema);
+export default mongoose.model('Command', CommandSchema);
