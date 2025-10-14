@@ -1,10 +1,26 @@
-# IoT Clothes Collector Backend
+# IoT Clothes Collector System
 
-Hệ thống backend Node.js cho dự án thu quần áo tự động khi trời mưa sử dụng ESP32.
+Hệ thống IoT thu gom quần áo tự động khi trời mưa sử dụng ESP32, Node.js Backend và Mobile App.
 
 ## 📋 Mô tả
 
-Backend cho hệ thống IoT thu quần áo tự động khi trời mưa, sử dụng Express.js và MQTT để giao tiếp với các thiết bị ESP32.
+Dự án IoT hoàn chỉnh bao gồm phần cứng ESP32 với cảm biến thời tiết, backend API và ứng dụng mobile để điều khiển và giám sát hệ thống thu gom quần áo tự động.
+
+## 📁 Cấu trúc dự án
+
+```
+IoT-Clothes-Collection/
+├── Documents/          # 📚 Tài liệu dự án
+│   ├── README.md
+│   ├── API-Documentation.md
+│   ├── System-Design.md
+│   └── Images/
+└── Source code/        # 💻 Source code
+    ├── Backend/        # Node.js API Server
+    ├── Frontend/       # Web Dashboard (tương lai)
+    ├── Mobile/         # Mobile App (tương lai)
+    └── Hardware/       # ESP32 Code (tương lai)
+```
 
 ## 🚀 Công nghệ sử dụng
 
