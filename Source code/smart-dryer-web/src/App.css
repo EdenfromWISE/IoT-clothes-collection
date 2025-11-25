@@ -1,0 +1,356 @@
+/* --- Global Styles for Body --- */
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* --- Authentication Page Styles --- */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.auth-form input {
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.auth-form button {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.toggle-button {
+  margin-top: 1rem;
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* --- Dashboard Page Styles --- */
+.dashboard-container {
+  width: 95vw;
+  height: 90vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex; /* Thêm flex để căn giữa pairing-wrapper */
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-container h1 {
+  margin-top: 0;
+}
+
+.dashboard-container button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #dc3545;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #dc3545;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.pairing-container {
+  text-align: center;
+}
+.pairing-container p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.pairing-wrapper {
+  padding: 2rem;
+}
+
+/* --- Device Control Page Styles --- */
+.control-container {
+  width: 100%;
+}
+
+.connection-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}
+
+.disconnect-btn {
+  background-color: #ffc107 !important;
+  color: black !important;
+  border: 1px solid #ffc107 !important;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.status-card {
+  background-color: #e9ecef;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.control-panel {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.control-panel button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: #007bff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease;
+}
+
+.control-panel button:active {
+  transform: scale(0.95);
+}
+
+.control-panel .stop-btn {
+  background-color: #dc3545;
+}
+
+.control-panel button:disabled {
+  background-color: #a9a9a9;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* --- Settings Card Styles --- */
+.settings-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.settings-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.slider-group {
+  margin-bottom: 1rem;
+}
+
+.slider-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+.slider-group input[type='range'] {
+  width: 100%;
+  cursor: pointer;
+}
+
+.slider-group input[type='range']:disabled {
+  cursor: not-allowed;
+}
+
+/* --- Toggle Switch Styles --- */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #28a745;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* --- Main Layout with Sidebar --- */
+.main-layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #e9ecef;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  background-color: transparent;
+  color: #495057;
+  text-align: left;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sidebar button:hover {
+  background-color: #e9ecef;
+}
+
+.sidebar button.active {
+  background-color: #007bff;
+  color: white;
+  font-weight: 500;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* --- Log History Styles --- */
+.log-history-container h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.log-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.log-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.log-item-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.log-title {
+  font-weight: 500;
+}
+
+.log-subtitle {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.log-timestamp {
+  color: #6c757d;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  margin-left: 1rem;
+}
