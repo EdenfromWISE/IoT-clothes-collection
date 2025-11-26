@@ -5,6 +5,10 @@ import AdminSidebar from './AdminSidebar';
 import Statistics from './Statistics';
 import UserManagement from './UserManagement';
 import DeviceManagement from './DeviceManagement';
+import SystemLogs from './SystemLogs';
+import SystemConfig from './SystemConfig';
+import SystemPerformance from './SystemPerformance';
+import FirmwareUpdate from './FirmwareUpdate';
 
 const AdminDashboard = ({ user }) => {
   const [activeTab, setActiveTab] = useState('statistics');
@@ -25,6 +29,14 @@ const AdminDashboard = ({ user }) => {
         return <UserManagement />;
       case 'devices':
         return <DeviceManagement />;
+      case 'logs':
+        return <SystemLogs />;
+      case 'config':
+        return <SystemConfig />;
+      case 'performance':
+        return <SystemPerformance />;
+      case 'firmware':
+        return <FirmwareUpdate />;
       default:
         return <Statistics />;
     }

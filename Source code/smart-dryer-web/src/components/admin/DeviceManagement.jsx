@@ -221,7 +221,7 @@ const DeviceManagement = () => {
 
               <div className="sensor-data">
                 <h3>Dữ liệu cảm biến gần nhất</h3>
-                {selectedDevice.temperature && <p>Nhiệt độ: {selectedDevice.temperature}°C</p>}
+                {selectedDevice.temp && <p>Nhiệt độ: {selectedDevice.temp}°C</p>}
                 {selectedDevice.humidity && <p>Độ ẩm: {selectedDevice.humidity}%</p>}
                 {selectedDevice.lux && <p>Ánh sáng: {selectedDevice.lux} lux</p>}
               </div>
@@ -273,7 +273,7 @@ const DeviceManagement = () => {
                                  'N/A'}
                               </span>
                             </td>
-                            <td>{record.temperature ? `${record.temperature.toFixed(1)}°C` : 'N/A'}</td>
+                            <td>{record.temp ? `${record.temp.toFixed(1)}°C` : 'N/A'}</td>
                             <td>{record.humidity ? `${record.humidity.toFixed(1)}%` : 'N/A'}</td>
                             <td>{record.lux ? `${record.lux.toFixed(0)} lux` : 'N/A'}</td>
                           </tr>

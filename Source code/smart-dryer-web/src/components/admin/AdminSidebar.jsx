@@ -2,7 +2,11 @@ const AdminSidebar = ({ activeTab, onTabClick }) => {
   const menuItems = [
     { id: 'statistics', icon: '📊', label: 'Thống kê' },
     { id: 'users', icon: '👥', label: 'Người dùng' },
-    { id: 'devices', icon: '📱', label: 'Thiết bị' }
+    { id: 'devices', icon: '📱', label: 'Thiết bị' },
+    { id: 'logs', icon: '📋', label: 'Nhật ký' },
+    { id: 'config', icon: '⚙️', label: 'Cấu hình' },
+    { id: 'performance', icon: '⚡', label: 'Hiệu năng' },
+    { id: 'firmware', icon: '🔄', label: 'Cập nhật OTA' },
   ];
 
   return (
